@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('./partials/head') %> 
+<body class="vista-previa">
+  <main>
+    <section class="top-form">
+      <div class="box-banner">
+        <h1 id="title" style="color: <%= event.colorPrimary %>;"><%= event.name %> </h1>
+        <h2 id="subtitle" style="color: <%= event.colorPrimary %>;"><%= event.subtitle %> </h2>
+        <p id="description"><%= event.description %> </p>
+        <% if (event.speaker) { %>
+          <div id="box-speaker">
+            <p class="charla">Charla con: <span class="charla" id="speaker"><%= event.speaker %> </span></p>
+        </div>
+        <% } %>
+       
+        <p class="box-date" id="date" style="background-color: <%= event.colorPrimary %>;"><span class="text-uppercase" id="dia"><%= moment(event.date).locale('es').format('dddd') %></span> <span class="fecha" id="fecha"><%= moment(event.date).format('DD') %></span>/<span class="fecha" id="mes"><%=moment(event.date).format('MM')%></span> - <span class="fecha" id="hora"><%= moment(event.date).format('HH') %></span>:<span class="fecha" id="minutos"><%= moment(event.date).format('mm') %></span> HS</p>
+        <% if (event.location) { %>
+          <div id="box-location">
+            <p class="medio" id="location"><%= event.location %> </p>
+        </div>
+        <% } %>
+       <% if (event.plataform) { %>
+        <div id="box-plataform">
+          <p class="medio">por <span id="plataform"><%= event.plataform %> </span></p>
+      </div>
+       <% } %>
+       
+      </div>
+    </section>
+      
+    <div class="box-form" id="box-form" style="background-color: <%= event.colorPrimary %>;">
+        <div class="form">
+            <form action="/records/register/<%= event.id %>" method="POST" class="needs-validation" novalidate id="formRecord">
+                <h4>Envianos tus datos para inscribirte al evento</h4>
+                <div class="row">
+                  <div class="mb-3 col-12 col-md-6 col-lg-4 has-validation">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= (typeof old != 'undefined' && old.name ? old.name : null) %>" required>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.name ? errores.name.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="surname" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="surname" name="surname" value="<%= (typeof old != 'undefined' && old.surname ? old.surname : null) %>" required>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.surname ? errores.surname.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="genre" class="form-label">Género</label>
+                    <select class="form-control" id="genre" name="genre" required>
+                      <option value="" hidden selected>Seleccione su género</option>
+                      <option value="masculino">Masculino</option>
+                      <option value="femenino">Femenino</option>
+                    </select>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.genre ? errores.genre.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="birthday" class="form-label">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" id="birthday" name="birthday" required>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.birthday ? errores.birthday.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= (typeof old != 'undefined' && old.email ? old.email : null) %>" required>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.email ? errores.email.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="phone" class="form-label">Número de teléfono</label>
+                    <div class="box-tel">
+                      <input type="text" id="prefijo" name="prefix" hidden></input>
+                      <div>
+                        <label for="" class="prefijo"></label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="<%= (typeof old != 'undefined' && old.phone ? old.phone : null) %>" required>
+                      </div>
+                      <span class="text-light">
+                        <%= (typeof errores !='undefined' && errores.phone ? errores.phone.msg : null) %>
+                    </span>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="country" class="form-label">País</label>
+                    <select class="form-control" id="country" name="country" required>
+                      <span class="text-light">
+                        <%= (typeof errores !='undefined' && errores.country ? errores.country.msg : null) %>
+                    </span>
+                    </select>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.country ? errores.country.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="state" class="form-label">Provincia/Región</label>
+                    <input type="text" class="form-control" id="state" name="state" value="<%= (typeof old != 'undefined' && old.state ? old.state : null) %>" required>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.state ? errores.state.msg : null) %>
+                  </span>
+                  </div> 
+                  <div class="mb-3 col-12 col-md-6 col-lg-4">
+                    <label for="city" class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" id="city" name="city" value="<%= (typeof old != 'undefined' && old.city ? old.city : null) %>" required>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.city ? errores.city.msg : null) %>
+                  </span>
+                  </div>
+                  <div class="mt-3 d-flex justify-content-center">
+                    <button type="submit" id="btn-form" class="btn">INSCRIBITE</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+  </main>
+  <footer>
+    <section class="botton-form"> 
+      <div class="d-flex justify-content-center align-items-center flex-wrap px-5" id="box-logos">
+        <img class="m-4" src="/images/osm.png" alt="">
+        <img class="m-4" src="/images/ofek.png" alt="">
+    </div>
+    </section>
+    <section class="d-flex justify-content-center align-items-center flex-wrap p-4">
+      <% event.logos.forEach(logo => { %>
+        <img class="mx-4" src="/images/events/<%= logo.name %> " alt="logotipo" height="80">
+      <% }) %>
+    </section>
+  </footer>
+  <script src="/public/javascripts/moment.js"></script>
+
+<script>
+
+const $ = id => document.getElementById(id)
+
+    const semana = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
+    const meses = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+    const date = new Date('<%= event.date %>');
+    const fecha = date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate();
+    const dia = semana[date.getDay()];
+    const mes = meses[date.getMonth()];
+    const hora = date.getHours().toString().length == 1 ? '0' + date.getHours() : date.getHours();
+    const minutos = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    console.log(date.getMinutes())
+    console.log(moment(date).format('YYYY-MM-DD HH:MM:SS'))
+
+
+  //$('dia').textContent = dia;
+  //$('fecha').textContent = fecha;
+  //$('mes').textContent = mes;
+  //$('hora').textContent = hora;
+  //$('minutos').textContent = minutos;
+
+
+</script>
+<script src="/javascripts/record.js"></script>
+<script src="/javascripts/validationFormRecord.js"></script>
+</body>
+</html>

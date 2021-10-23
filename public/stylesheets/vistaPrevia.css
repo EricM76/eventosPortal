@@ -1,0 +1,232 @@
+.vista-previa{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-family: 'Raleway', sans-serif;
+    background-color: #E8E8E8;
+}
+
+.vista-previa .top-form{
+    padding: 20px 0;
+}
+
+.vista-previa .box-banner{
+    box-shadow: 0 0 50px #727272;
+    background-color: white;
+    width: 90%;
+    height: 80vh;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.vista-previa .box-banner h1{
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 35px;
+    line-height: 34px;
+    letter-spacing: -2px;
+}
+
+.vista-previa .box-banner h2{
+    text-transform: uppercase;
+    font-weight:400;
+    font-size: 35px;
+    line-height: 34px;
+    letter-spacing: -2px;
+}
+.vista-previa .box-banner p#description{
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.vista-previa .box-banner .charla{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 22px;
+}
+
+.vista-previa .box-date{
+    border-radius: 16px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0 10px;
+    font-family: 'Raleway', sans-serif;
+    color: #ffffff;
+}
+
+.vista-previa .box-date span#dia{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.vista-previa .box-date .fecha{
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.vista-previa .medio{
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 400;
+
+}
+
+.vista-previa form{
+    margin: 0px auto;
+    padding: 20px 0;
+}
+
+.vista-previa .box-form{
+    width: 100%;
+    padding: 20px 30px;
+    color: #ffffff;
+
+}
+
+.vista-previa .box-form h4{
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.vista-previa .box-form label{
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.vista-previa .box-form .box-tel{
+    position: relative;
+}
+
+.vista-previa .box-form .prefijo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: .475rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #AAAAAA;
+    background:none;
+    border: none;
+    width: 85px;
+
+}
+.p-left{
+    padding-left: 60px;
+}
+
+.vista-previa .box-form input, .vista-previa .box-form select{
+    background-color: #E8E8E8;
+    color: #AAAAAA;
+}
+
+.vista-previa .box-form button{
+    font-size: 22px;
+    font-weight: 800;
+    box-shadow: -5px 5px #727272;
+    background-color: #E8E8E8;
+    transition: all 0.7s ease 0.2s; 
+}
+
+.vista-previa .box-form button:hover{
+    background-color: #ffffff;
+}
+
+.vista-previa .botton-form{
+    padding: 20px 0;
+    background-color: #ffffff;
+}
+
+.vista-previa footer{
+    width: 100%;
+    background-color: #ffffff;
+}
+
+@media (min-width:768px) {
+    
+    .vista-previa .box-banner{
+        width: 600px;
+        height: 400px;
+        margin: 30px auto;
+        padding: 30px;
+    }
+    .vista-previa .box-banner h1{
+        font-size: 45px;
+        line-height: 44px;
+    }
+    .vista-previa .box-banner h2{
+        font-size: 45px;
+        line-height: 44px;
+    }
+    .vista-previa .box-date{
+        font-weight: 600;
+        font-size: 28px;
+        padding: 0 20px;
+        height: 45px;
+
+    }
+    .vista-previa .box-date span#dia{
+        font-weight: 600;
+        font-size: 28px;
+    }
+    
+    .vista-previa .box-date .fecha{
+        font-weight: 900;
+        font-size: 28px;
+    }
+    .vista-previa .box-form{
+        width: 100%;
+        padding: 20px 60px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .vista-previa {
+        background-color: #ffffff;
+    }
+    
+    .vista-previa .top-form{
+        background-image: url('/images/fondo-top-100.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .vista-previa .box-banner{
+        width: 915px;
+        height: 345px;
+        margin: 50px auto;
+        padding: 40px 80px;
+    }
+   /*  .vista-previa .box-form{
+        width: 1200px;
+         height: 410px;
+    } */
+    .vista-previa .box-form form{
+        width: 70%;
+    } 
+    .vista-previa .box-date{
+       max-width: 400px;
+    }
+    .vista-previa .botton-form{
+        /* background-image: url('/images/fondo-footer-100.jpg');
+        background-repeat: no-repeat;
+        background-size: 1200px;
+        background-position: center;
+        background-size: 100%; */
+        background-color: #ffffff;
+    }
+
+}

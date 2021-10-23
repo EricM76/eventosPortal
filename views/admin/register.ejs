@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('partials/header') %>
+
+            <main class="container my-4">
+                <h2>Registro</h2>
+                <hr>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="POST" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputName4" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="inputName4" name="name"
+                                    value="<%= (typeof old != 'undefined' && old.name ? old.name : null) %>" />
+                                <span class="text-danger">
+                                    <%= (typeof errores !='undefined' && errores.name ? errores.name.msg : null) %>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4" name="email"
+                                    value="<%= (typeof old != 'undefined' && old.email ? old.email : null) %>" />
+                                <span class="text-danger">
+                                    <%= (typeof errores !='undefined' && errores.email ? errores.email.msg : null) %>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="inputPassword4" name="pass" />
+                                <span class="text-danger">
+                                    <%= (typeof errores !='undefined' && errores.pass ? errores.pass.msg : null) %>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Repite tu contraseña</label>
+                                <input type="password" class="form-control" id="inputPassword4" name="pass2" />
+                                <span class="text-danger">
+                                    <%= (typeof errores !='undefined' && errores.pass2 ? errores.pass2.msg : null) %>
+                                </span>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+            <%- include('../partials/footer') %>
+
+            <script src=""></script>
+    </body>
+
+</html>

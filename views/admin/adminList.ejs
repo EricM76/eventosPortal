@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head',{title: "Administradores" }) %>
+
+    <body class="admin-activity">
+        <%- include('partials/header') %>
+            <main class="container mt-5">
+                <div class="row">
+                    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                        <div class="card ">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title">Administradores</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-responsive table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-activity-id" scope="col">#</th>
+                                            <th class="col-activity-name" scope="col">Nombre</th>
+                                            <th class="col-activity-email" scope="col">Email</th>
+                                            <th class="col-activity-action" scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% users.forEach((user,index)=> { %>
+                                            <tr>
+                                                <td scope="row" class="align-middle">
+                                                    <%= index + 1 %>
+                                                </td>
+                                                <td scope="row" class="align-middle">
+                                                    <%= user.name %>
+                                                </td>
+                                                <td scope="row" class="align-middle">
+                                                    <%= user.email %>
+                                                </td>
+                                                <td>
+                                                    <div class="text-center">
+                                                        <form id="formDelete<%= user.id %>"
+                                                            action="/users/remove/<%= user.id %>?_method=DELETE"
+                                                            method="POST">
+                                                            <button type="submit" style="width: 30px;"
+                                                                class="btn btn-sm btn-danger m-1" title="Eliminar"
+                                                                onclick="confirmRemove(event,document.querySelector('#formDelete<%=user.id%>'))" <%= user.id === 1 ? 'disabled' : null %> ><i
+                                                                    class="fas fa-trash-alt"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+            <%- include('../partials/footer') %>
+            <script src="/javascripts/adminList.js"></script>
+    </body>
+
+</html>

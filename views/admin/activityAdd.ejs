@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %> 
+<body class="admin-event">
+  <%- include('partials/header') %> 
+
+    <main class="container my-5">
+      <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+          <h5 class="card-title">Crear nueva actividad</h5>
+          <a type="button" href="/admin" class="btn-close bg-white"></a>
+        </div>
+        <div class="card-body">
+          <form action="/activities/add" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+                <div class="col-12 col-lg-6 mb-3">
+                  <div class="has-validation">
+                    <label for="inputEvent" class="form-label">Actividad</label>
+                    <input type="text" class="form-control" id="inputEvent" name="name" required>
+                  <div class="invalid-feedback">
+                    El nombre es obligatorio.
+                  </div>
+                  </div>
+                </div>
+               
+                <div class="col-12 d-flex justify-content-end mt-5">
+                  <button type="submit" class="btn btn-outline-primary m-3">Guardar</button>
+                </div>
+            </form>
+          </div>
+      </div>
+
+      </main>
+
+
+        <%- include('../partials/footer') %>
+        <script src="/javascripts/validationForm.js"></script>
+</body>
+</html>

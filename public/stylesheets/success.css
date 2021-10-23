@@ -1,0 +1,57 @@
+
+.success .box-tick{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.success .box-tick h3{
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.success .box-tick p{
+    text-align: center;
+    margin: 0;
+}
+
+.success .tick{
+    width: 70px;
+}
+
+.vista-previa a.btn{
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: 800;
+    box-shadow: -5px 5px #727272;
+    background-color: #E8E8E8;
+}
+
+@media (min-width:768px) {
+    .success{
+        display: block;
+    }
+}
+@media (min-width:1200px) {
+    .success .tick{
+        width: initial;
+    }
+    .success .box-tick h3{
+        font-size: 35px;
+        line-height: 34px;
+    }
+    .success .box-tick p{
+        font-size: 22px;
+    }
+    .success{
+        display: flex;
+    }
+    .vista-previa a.btn{
+        font-size: 22px;
+    }
+}
+

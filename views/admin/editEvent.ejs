@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %> 
+<body class="admin-event">
+  <%- include('partials/header') %> 
+
+    <main class="container my-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= event.name %></li>
+            </ol>
+          </nav>
+      <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+          <h5 class="card-title">Editar evento</h5>
+          <a type="button" href="/admin" class="btn-close bg-white"></a>
+        </div>
+        <div class="card-body">
+          <form class="row g-3 needs-validation" action="/events/edit/<%= event.id %>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate>
+                <div class="col-12 col-lg-6 mb-3">
+                  <div class="has-validation">
+                    <label for="inputEvent" class="form-label">Evento</label>
+                    <input type="text" class="form-control" id="inputEvent" name="name" value="<%= event.name %> " required>
+                  <div class="invalid-feedback">
+                    El nombre es obligatorio.
+                  </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="inputSubTitle" class="form-label">Subtítulo</label>
+                    <input type="text" class="form-control" id="inputSubTitle" name="subtitle" value="<%= event.subtitle %>">       
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                  <label for="inputSpeaker" class="form-label">Speaker</label>
+                  <input type="text" class="form-control" id="inputSpeaker" name="speaker" value="<%= event.speaker %>">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                  <div class="has-validation">
+                    <label for="selectActivity" class="form-label">Actividad</label>
+                    <select id="selectActivity" class="form-select" name="activityId" required>
+                      <% activities.forEach(activity => { %>
+                        <option value="<%= activity.id %>" <%= event.activity.id === activity.id ? 'selected' : null%> ><%= activity.name %> </option>
+                      <% }) %>
+                    </select>
+                    <div class="invalid-feedback">
+                      La actividad es obligatoria.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                  <div class="has-validation">
+                    <label for="inputDate" class="form-label">Fecha y hora</label>
+                    <input type="datetime-local" class="form-control" id="inputDate" name="date" required value=<%=fecha%>>
+                    <div class="invalid-feedback">
+                      La fecha es obligatoria.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="textDescription" class="form-label">Descripción</label>
+                  <input type="text" class="form-control" id="inputDescription" name="description" value="<%= event.description %>">
+                </div>
+                <div class="col-12 col-md-4 mb-3" id="box-modality">
+                  <label for="selectModality" class="form-label">Modalidad</label>
+                  <select id="selectModality" class="form-select" name="modality" required>
+                      <option value="presencial" <%= event.modality === "presencial" ? 'selected' : null %> >Presencial</option>
+                      <option value="virtual" <%= event.modality === "virtual" ? 'selected' : null %> >Virtual</option>
+                  </select>               
+                 </div>
+                <div class="col-12 col-md-4 mb-3" id="boxPlataform">
+                  <label for="inputPlataform" class="form-label">Plataforma</label>
+                  <input type="text" class="form-control" id="inputPlataform" name="plataform" value="<%= event.plataform %>">
+                </div>
+                <div class="col-12 col-md-4 mb-3" id="boxLink">
+                  <label for="inputConnection" class="form-label">Link de acceso</label>
+                  <input type="text" class="form-control" id="inputConnection" name="connection" value="<%= event.connection %>">
+                </div>
+                <div class="col-12 col-md-8 mb-3" id="boxLocation" hidden>
+                  <label for="inputLocation" class="form-label">Ubicación</label>
+                  <input type="text" class="form-control" id="inputLocation" name="location" value="<%= event.location %>">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex flex-column justify-content-center">
+                  <label id="btn-logos" for="logos" class="btn btn-outline-primary">Agregar logos</label>
+                  <input type="file" class="form-control" id="logos" name="logos" multiple style="display: none;">
+                  <button class="btn btn-outline-danger mt-2" id="btn-remove-logos" style="display: none;">Remover logos</button>
+                  <span id="logosError"></span>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8 mb-3 d-flex justify-content-center">
+                  <div class="mt-4 d-flex flex-warp justify-content-around" id="logosSave">
+                    <% event.logos.forEach(logo => { %>
+                     <img src="/images/events/<%= logo.name %>" alt="logotipo" width="100">
+                    <% }) %>
+                  </div>
+                  <div class="mt-4 d-flex flex-warp justify-content-around" id="prevLogos">
+                   
+                  </div>
+                </div>
+
+                <div class="col-4 col-md-2 mb-3 d-flex flex-column align-items-center">
+                  <div class="has-validation">
+
+                  <label for="inputColorPrimary" class="form-label">Formulario</label>
+                  <input type="color" class="form-control" id="inputColorPrimary" value="<%= event.colorPrimary %>" title="Elija el color" name="colorPrimary" style="width: 90px;height: 50px;"> 
+                  </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end mt-5 flex-wrap">
+                    <a href="/admin" class="btn btn-outline-secondary m-3">Cancelar</a>
+                  <a type="submit" class="btn btn-outline-primary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-preview">Vista previa</a>
+                  <button type="submit" class="btn btn-outline-primary m-3">Guardar cambios</button>
+                </div>
+            </form>
+          </div>
+      </div>
+
+      </main>
+
+      <%- include('./partials/modal-vistaPrevia') %> 
+
+        <%- include('../partials/footer') %>
+        <script src="/javascripts/editEvent.js"></script>
+        <script src="/javascripts/validationForm.js"></script>
+</body>
+</html>

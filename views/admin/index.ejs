@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+
+  <body class="admin-index">
+    <%- include('partials/header') %>
+      <main class="container mt-5">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4 class="card-title">Eventos</h4>
+          </div>
+          <div class="card-body">
+            <% if (events.length==0) { %>
+              <% if (typeof message != 'undefined') { %>
+                <p><%= message %> </p>
+              <% }else{ %>
+              <p>No hay eventos registrados</p>
+              
+              <% } %>
+              <div class="col-12 my-2 text-end" id="btn-add">
+                <a href="/events/add" class="btn btn-outline-primary">Nuevo evento</a>
+                <a href="/" class="btn btn-outline-secondary">Volver al inicio</a>
+            </div>
+              <% }else{ %>
+            <div class="row">
+              <div class="col-12 col-md-4 col-lg-3 my-2">
+               <form action="/events/activity" class="d-flex" method="POST" id="formFilter">
+                 <select class="form-control" name="activity" id="activity">
+                  <% activities.forEach(activity => { %>
+                    <option value="" hidden selected>Filtrar por actividad</option>
+                    <option value="<%= activity.id %>"><%= activity.name %> </option>
+                   <% }) %>
+                   <option value="0">Todas</option>
+                 </select>
+               </form>
+              </div>
+              <div class="col-12 col-md-4 col-lg-3 my-2">
+                <form action="/events/order" class="d-flex" id="formOrder">
+                  <select class="form-control" name="order" id="order">
+                     <option value="" hidden selected>Ordenar por</option>
+                     <option value="evento">Evento</option>
+                     <option value="fecha">Fecha</option>
+                     <option value="actividad">Actividad</option>
+                     <option value="default">Default</option>
+                  </select>
+                </form>
+               </div>
+              <div class="col-12 col-md-4 col-lg-3 my-2">
+               <form action="/events/search" class="d-flex" id="formSearch">
+                 <input class="form-control me-2" type="search" placeholder="Buscar..." name="search" aria-label="Search" id="search">
+                 <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+               </form>
+              </div>
+              <div class="col-12 col-md-12 col-lg-3 my-2 d-flex justify-content-end flex-wrap">
+                <a id="btn-informe" href="/events/create-excel" class="btn btn-outline-primary btn-informe">Informe</a>
+                <a href="/events/add" class="btn btn-outline-primary">Nuevo</a>
+              </div>
+            </div>
+            
+                   <hr>
+     
+                   <table class="table table-striped table-responsive">
+                     <thead>
+                       <tr>
+                         <th scope="col">#</th>
+                         <th scope="col">Evento</th>
+                         <th class="col-date" scope="col">Fecha</th>
+                         <th class="col-activity" scope="col">Tipo de actividad</th>
+                         <th class="col-inscription" scope="col">Inscriptos</th>
+                         <th scope="col">Acciones</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <% events.forEach((event,index)=> { %>
+                         <tr>
+                           <td scope="row">
+                             <%= index + 1 %>
+                           </td>
+                           <td>
+                             <%= event.name %>
+                           </td>
+                           <td class="col-date" id="date<%= event.id %>">
+                            
+                            <script>
+                                document.getElementById('date<%=event.id%>').innerHTML = moment('<%= event.date%>').parseZone().local().format('DD/MM/YYYY')
+                            </script>
+                           </td>
+                           <td class="col-activity">
+                             <%= event.activity.name %>
+                           </td>
+                           <td id="route<%= event.id %>" hidden>
+                             <%= event.link.route %> 
+                           </td>
+                           <td class="col-inscription">
+                             <%= event.records.length%>
+                           </td>
+                           <td>
+                             <a style="width: 30px;" href="/events/detail/<%= event.id %>" class="btn btn-sm btn-primary m-1"><i
+                                 class="fas fa-info" title="Ver más"></i></a>
+                             <a style="width: 30px;" href="/events/edit/<%= event.id %>?event=<%= event.id %>" class="btn btn-sm btn-secondary m-1"
+                                   title="Editar"><i class="fas fa-edit"></i></a>
+                             <a id="btn-download" style="width: 30px;" href="/records/create-excel/<%= event.id %>" class="btn btn-sm btn-success m-1"
+                               title="Descargar excel"><i class="fas fa-download"></i></a>
+                             <a style="width: 30px;" id="btnRoute" class="btn btn-sm btn-warning m-1" title="Copiar el link" href="#"
+                             onclick="copiarAlPortapapeles('route<%=event.id%>')"><i class="far fa-copy"></i></a>
+                           </td>
+                         </tr>
+                         <% }) %>
+                     </tbody>
+                   </table>
+                   <% } %>          </div>
+        </div>
+      
+      </main>
+      
+      <%- include('../partials/footer') %>
+        <script src="/javascripts/indexAdmin.js"></script>
+  </body>
+
+</html>

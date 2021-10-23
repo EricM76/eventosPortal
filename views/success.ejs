@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('./partials/head') %> 
+<body class="vista-previa success">
+  <main>
+    <section class="top-form">
+      <div class="box-banner">
+        <h1 id="title"><%= event.name %> </h1>
+        <h2 id="subtitle"><%= event.subtitle %> </h2>
+        <p id="description"><%= event.description %> </p>
+        <div id="box-speaker" style="display: none;">
+            <p class="charla">Charla con: <span class="charla" id="speaker"><%= event.speaker %> </span></p>
+        </div>
+        <p class="box-date" id="date"><span class="text-uppercase" id="dia"></span> <span class="fecha" id="fecha"></span>/<span class="fecha" id="mes"></span> - <span class="fecha" id="hora"></span> HS</p>
+        <div id="box-location" style="display: none;">
+            <p class="medio" id="location"><%= event.location %> </p>
+        </div>
+        <div id="box-plataform" style="display: none;">
+            <p class="medio">por <span id="plataform"><%= event.plataform %> </span></p>
+        </div>
+      </div>
+    </section>
+      
+    <div class="box-form box-tick" id="box-form">
+            <img class="tick" src="/images/tick.png" alt="">
+            <h3>¡LISTO, YA ESTÁS INSCRIPTO/A!</h3>
+            <p>Te enviaremos la confirmación a tu correo electrónico</p>
+            <p>¡Nos vemos en el evento!</p>
+            <% if (event.connection) { %>
+              <p>Link para participar: <%= event.connection %></p>
+
+            <% }else if(event.location){ %>
+              <p>Lugar: <%= event.location %> </p>
+
+            <% } %>
+          <a href="/records/register/<%= event.id %>" class="btn">VOLVER A INSCRIPCIÓN</a>
+    </div>
+  </main>
+  <footer>
+    <section class="botton-form"> 
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="mx-3">
+          <img class="img-fluid" src="/images/osm.png" alt="">
+        </div>
+        <div class="mx-3">
+          <img class="img-fluid" src="/images/ofek.png" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="box-logos">
+
+    </section>
+  </footer>
+<script>
+
+const $ = id => document.getElementById(id)
+
+    const semana = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
+    const meses = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+    const date = new Date('<%= event.date %>');
+    const fecha = date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate();
+    const dia = semana[date.getDay()];
+    const mes = meses[date.getMonth()];
+    const hora = date.getHours().toString().length == 1 ? '0' + date.getHours() : date.getHours();
+    const minutos = date.getMinutes().length == 1 ? '0' + date.getMinutes() : date.getMinutes();
+
+  $('title').style.color = '<%= event.colorPrimary %>';
+  $('subtitle').style.color = '<%= event.colorPrimary %>';
+  $('date').style.backgroundColor='<%= event.colorPrimary %>';
+  $('box-form').style.backgroundColor='<%= event.colorPrimary %>';
+
+  $('dia').textContent = dia;
+  $('fecha').textContent = fecha;
+  $('mes').textContent = mes;
+  $('hora').textContent = hora;
+
+  if('<%=event.speaker%>'){
+        $('box-speaker').style.display = 'block';
+        $('speaker').textContent = '<%=event.speaker%>';
+
+  }else{
+      $('box-speaker').style.display = 'none';
+  }
+
+  if('<%=event.plataform%>'){
+      $('box-plataform').style.display = 'block';
+      $('plataform').textContent = '<%=event.plataform%>';
+      $('box-location').style.display = 'none';
+  }
+
+  if('<%=event.location%>'){
+      $('box-location').style.display = 'block';
+      $('box-plataform').style.display = 'none';
+      $('location').textContent = '<%=event.location%>';
+  }
+
+</script>
+<script src="/javascripts/record.js"></script>
+<script src="/javascripts/validationForm.js"></script>
+</body>
+</html>

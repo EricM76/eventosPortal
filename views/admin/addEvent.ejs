@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %> 
+<body class="admin-event">
+  <%- include('partials/header') %> 
+
+    <main class="container my-5">
+      <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+          <h5 class="card-title">Crear nuevo evento</h5>
+          <a type="button" href="/admin" class="btn-close bg-white"></a>
+        </div>
+        <div class="card-body">
+          <form class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+                <div class="col-12 col-lg-6 mb-3">
+                  <div class="has-validation">
+                    <label for="inputEvent" class="form-label">Evento</label>
+                    <input type="text" class="form-control" id="inputEvent" name="name" required>
+                  <div class="invalid-feedback">
+                    El nombre es obligatorio.
+                  </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="inputSubTitle" class="form-label">Subtítulo</label>
+                    <input type="text" class="form-control" id="inputSubTitle" name="subtitle">       
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                  <label for="inputSpeaker" class="form-label">Speaker</label>
+                  <input type="text" class="form-control" id="inputSpeaker" name="speaker">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                  <div class="has-validation">
+                    <label for="selectActivity" class="form-label">Actividad</label>
+                    <select id="selectActivity" class="form-select" name="activityId" required>
+                      <option value="" hidden selected>Seleccione...</option>
+                      <% activities.forEach(activity => { %>
+                        <option value="<%= activity.id %>"><%= activity.name %> </option>
+                      <% }) %>
+                    </select>
+                    <div class="invalid-feedback">
+                      La actividad es obligatoria.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                  <div class="has-validation">
+                    <label for="inputDate" class="form-label">Fecha y hora</label>
+                    <input type="datetime-local" class="form-control" id="inputDate" name="date" required>
+                    <div class="invalid-feedback">
+                      La fecha es obligatoria.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 mb-3">
+                  <label for="textDescription" class="form-label">Descripción</label>
+                  <input type="text" class="form-control" id="inputDescription" name="description">
+                </div>
+                <div class="col-12 col-md-4 mb-3" id="box-modality">
+                  <label for="selectModality" class="form-label">Modalidad</label>
+                  <select id="selectModality" class="form-select" name="modality" required>
+                      <option value="presencial">Presencial</option>
+                      <option value="virtual" selected>Virtual</option>
+                  </select>               
+                 </div>
+                <div class="col-12 col-md-4 mb-3" id="boxPlataform">
+                  <label for="inputPlataform" class="form-label">Plataforma</label>
+                  <input type="text" class="form-control" id="inputPlataform" name="plataform">
+                </div>
+                <div class="col-12 col-md-4 mb-3" id="boxLink">
+                  <label for="inputConnection" class="form-label">Link de acceso</label>
+                  <input type="text" class="form-control" id="inputConnection" name="connection">
+                </div>
+                <div class="col-12 col-md-8 mb-3" id="boxLocation" hidden>
+                  <label for="inputLocation" class="form-label">Ubicación</label>
+                  <input type="text" class="form-control" id="inputLocation" name="location">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex flex-column justify-content-center flex-wrap">
+                  <label id="btn-logos" for="logos" class="btn btn-outline-primary">Subir logos</label>
+                  <input type="file" class="form-control" id="logos" name="logos" multiple style="display: none;">
+                  <button class="btn btn-outline-danger mt-2" id="btn-remove-logos" style="display: none;">Remover todos</button>
+                  <span id="logosError"></span>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8 mb-3">
+                  <div class="mt-4 d-flex flex-warp justify-content-around" id="prevLogos">
+                  </div>
+                </div>
+
+                <div class="col-4 col-md-2 mb-3 d-flex flex-column align-items-center">
+                  <div class="has-validation">
+
+                  <label for="inputColorPrimary" class="form-label">Formulario</label>
+                  <input type="color" class="form-control" id="inputColorPrimary" value="#FF7900" title="Elija el color" name="colorPrimary" style="width: 90px;height: 50px;"> 
+                  </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end mt-5">
+                  <a type="submit" class="btn btn-outline-primary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-preview">Vista previa</a>
+                  <button type="submit" class="btn btn-outline-primary m-3">Guardar cambios</button>
+                </div>
+            </form>
+          </div>
+      </div>
+
+      </main>
+      <script src="/javascripts/addEvent.js"></script>
+
+      <%- include('./partials/modal-vistaPrevia') %> 
+
+        <%- include('../partials/footer') %>
+        <script src="/javascripts/validationForm.js"></script>
+</body>
+</html>

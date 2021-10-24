@@ -24,5 +24,18 @@ module.exports = {
         .then(()=>console.log('logos elimindos'))
         .catch(error => console.log(error))
         
+    },
+    getCallingCodes : (req,res) => {
+        db.Country.findOne({
+            where : {
+                name : req.params.name
+            }
+        })
+        .then(country => res.status(200).json({callingCode : country.callingCode}))
+        .catch(error => {
+            res.status(500).json(error)
+            console.log(error)
+        })
+
     }
 }

@@ -22,7 +22,7 @@ const { validationResult } = require('express-validator');
 
 module.exports = {
     register : (req,res) => {
-        db.Event.findOne({
+        let event = db.Event.findOne({
             where : {
                 id : req.params.id
             },
@@ -30,10 +30,12 @@ module.exports = {
                 {association : 'logos' }
             ]
         })
-        .then(event => {
+        let countries = db.Country.findAll()
+        Promise.all([event,countries])
+        .then(([event,countries]) => {
             return res.render('form',{
                 event,
-                paises: paises.sort(),
+                countries,
                 title : event.title,
                 moment
             })

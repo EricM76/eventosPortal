@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 8.0.21, for macos10.15 (x86_64)
+--
+-- Host: localhost    Database: events
+-- ------------------------------------------------------
+-- Server version	5.7.26
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Countries`
+--
+
+DROP TABLE IF EXISTS `Countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `callingCode` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Countries`
+--
+
+LOCK TABLES `Countries` WRITE;
+/*!40000 ALTER TABLE `Countries` DISABLE KEYS */;
+INSERT INTO `Countries` VALUES (1,'Anguilla',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(2,'Antigua y Barbuda',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(3,'Argentina',54,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(4,'Aruba',297,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(5,'Bahamas',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(6,'Barbados',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(7,'Belice',501,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(8,'Bermudas',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(9,'Bolivia',591,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(10,'Bonaire, Sint Eustatius and Saba',599,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(11,'Brasil',55,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(12,'Canadá',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(13,'Chile',56,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(14,'Colombia',57,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(15,'Costa Rica',506,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(16,'Cuba',53,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(17,'Curaçao',599,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(18,'Dominica',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(19,'Ecuador',593,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(20,'El Salvador',503,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(21,'España',34,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(22,'Estados Unidos',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(23,'Grenada',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(24,'Groenlandia',299,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(25,'Guadalupe',590,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(26,'Guatemala',502,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(27,'Guayana Francesa',594,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(28,'Guyana',592,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(29,'Haiti',509,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(30,'Honduras',504,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(31,'Islas Caimán',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(32,'Islas Georgias del Sur y Sandwich del Sur',500,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(33,'Islas Malvinas',500,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(34,'Islas Turks y Caicos',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(35,'Islas Ultramarinas Menores de Estados Unidos',246,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(36,'Islas Vírgenes de los Estados Unidos',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(37,'Islas Vírgenes del Reino Unido',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(38,'Israel',972,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(39,'Jamaica',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(40,'Martinica',596,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(41,'Montserrat',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(42,'México',52,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(43,'Nicaragua',505,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(44,'Panamá',507,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(45,'Paraguay',595,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(46,'Perú',51,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(47,'Puerto Rico',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(48,'República Dominicana',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(49,'Saint Martin',590,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(50,'San Bartolomé',590,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(51,'San Cristóbal y Nieves',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(52,'San Pedro y Miquelón',508,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(53,'San Vicente y Granadinas',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(54,'Santa Lucía',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(55,'Sint Maarten (Dutch part)',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(56,'Surinam',597,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(57,'Trinidad y Tobago',1,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(58,'Uruguay',598,'2021-10-24 01:33:57','2021-10-24 01:33:57'),(59,'Venezuela',58,'2021-10-24 01:33:57','2021-10-24 01:33:57');
+/*!40000 ALTER TABLE `Countries` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-10-23 23:31:46

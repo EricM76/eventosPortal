@@ -89,10 +89,14 @@
                   <div class="mb-3 col-12 col-md-6 col-lg-4">
                     <label for="country" class="form-label">País</label>
                     <select class="form-control" id="country" name="country" required>
-                      <span class="text-light">
-                        <%= (typeof errores !='undefined' && errores.country ? errores.country.msg : null) %>
-                    </span>
+                   <option value="" selected hidden>Seleccione su país</option>
+                   <% countries.forEach(country => { %>
+                    <option value="<%= country.name %>"><%= country.name %></option>
+                   <% }) %>
                     </select>
+                    <span class="text-light">
+                      <%= (typeof errores !='undefined' && errores.country ? errores.country.msg : null) %>
+                  </span>
                     <span class="text-light">
                       <%= (typeof errores !='undefined' && errores.country ? errores.country.msg : null) %>
                   </span>

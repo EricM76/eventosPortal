@@ -26,9 +26,9 @@ window.addEventListener("load", () => {
             console.log(error);
         }
     };
-    getPaises();
+    //getPaises();
 
-    $("country").addEventListener("change", (e) => {
+   /*  $("country").addEventListener("change", (e) => {
 
         const getPais = async () => {
             try {
@@ -39,6 +39,25 @@ window.addEventListener("load", () => {
                     document.querySelector('.prefijo').textContent = '+' + result[0].callingCodes[0];
                     document.getElementById('phone').classList.add('p-left')
                 }
+    
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getPais();
+       
+    }); */
+    $("country").addEventListener("change", (e) => {
+
+        const getPais = async () => {
+            try {
+                const response = await fetch(`/apis/callingCodes/${e.target.value}`);
+                const result = await response.json();
+                    document.getElementById('prefijo').value = '+' + result.callingCode;
+                    document.querySelector('.prefijo').textContent = '+' + result.callingCode;
+                    document.getElementById('phone').classList.add('ps-5')
+
     
             } catch (error) {
                 console.log(error);

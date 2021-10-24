@@ -12,11 +12,11 @@ const client = new SMTPClient({
 	ssl: true,
 });
 
-const codigos = require('../data/paises.json');
+/* const codigos = require('../data/paises.json');
 const paises = [];
 for (const key in codigos) {
     paises.push(codigos[key])
-}
+} */
 
 const { validationResult } = require('express-validator');
 

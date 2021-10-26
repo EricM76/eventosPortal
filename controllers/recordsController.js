@@ -42,10 +42,22 @@ module.exports = {
         })
         .catch(error => console.log(error))
     },
-    processRegister : (req,res) => {
+    processRegister : async (req,res) => {
         let errors = validationResult(req);
+        console.log(errors)
         const {name,surname,genre,birthday,email,prefix,phone,country,state,city} = req.body;
         const fecha = new Date(birthday);
+
+        let event = await db.Event.findByPk(req.params.id)
+                if(!event.active){
+                    error = {
+                        active : {
+                        msg: "El evento no recibe más inscripciones",
+                    }
+                    };
+                    errors.errors.push(error)
+                }
+    
 
         if(errors.isEmpty()){
         db.Record.create({
@@ -98,21 +110,25 @@ module.exports = {
         })
         .catch(error => console.log(error))
     }else{
-        db.Event.findOne({
-            where : {
-                id : req.params.id
-            },
-            include : [
-                {association : 'logos' }
-            ]
-        })
-        .then(event => {
+            let event = db.Event.findOne({
+                where : {
+                    id : req.params.id
+                },
+                include : [
+                    {association : 'logos' }
+                ]
+            })
+            let countries = db.Country.findAll()
+            Promise.all([event,countries])
+            .then(([event,countries]) => {
+                console.log(errors.mapped())
             return res.render('form',{
                 event,
-                paises: paises.sort(),
+                countries,
                 title : event.title,
                 errores : errors.mapped(),
-                old : req.body
+                old : req.body,
+                moment
             })
         })
         .catch(error => console.log(error))

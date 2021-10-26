@@ -33,7 +33,7 @@
                   </div>
                   <div>
                     <form id="formDelete" action="/events/remove/<%= event.id %>?_method=delete" method="post">
-                      <button type="submit" class="btn btn-danger" ><i class="fas fa-trash-alt" onclick="confirmRemove(event,document.querySelector('#formDelete'))"></i></button>                
+                      <button type="submit" class="btn btn-danger" onclick="confirmRemove(event,document.querySelector('#formDelete'))"><i class="fas fa-trash-alt" ></i></button>                
                     </form>
                   </div>
                 </div>
@@ -67,7 +67,8 @@
           <div class="row p-3">
             <h4>Inscriptos:</h4>
             <hr>
-            <table class="table table-striped table-responsive">
+            <div class="table-responsive">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -79,6 +80,7 @@
                   <th scope="col">Celular</th>
                   <th scope="col">País</th>
                   <th scope="col">Ciudad</th>
+                  <th scope="col">Acción</th>
 
                 </tr>
               </thead>
@@ -94,10 +96,12 @@
                     <td><%= record.phone %> </td>
                     <td><%= record.country %> </td>
                     <td><%= record.city %> </td>
+                    <td><a class="btn btn-sm btn-danger"><i class="fas fa-trash-alt" ></i></a></td>
                   </tr>
                 <% }) %>
               </tbody>
             </table>
+          </div>
           </div>
          
         </div>

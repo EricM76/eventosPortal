@@ -67,6 +67,21 @@ const confirmRemove = (e, form) => {
     })
 }
 
+async function removeRecord(id)  {
+    response = await fetch('/apis/remove-record/',{
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            id,
+        })
+    });
+    result = await response.json();
+    console.log(result);
+    window.location.reload()
+  }
+
 document.getElementById('btn-download').addEventListener('click', () => {
 
     Toast.fire({

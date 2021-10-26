@@ -44,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     colorText: DataTypes.STRING,
     bannerDesktop: DataTypes.STRING,
     bannerMobile: DataTypes.STRING,
-    activityId: DataTypes.INTEGER
+    activityId: DataTypes.INTEGER,
+    active:DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Event',

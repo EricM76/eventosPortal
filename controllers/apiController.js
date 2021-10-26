@@ -37,5 +37,34 @@ module.exports = {
             console.log(error)
         })
 
+    },
+    changeActive : (req,res) => {
+        db.Event.update(
+        {
+            active : req.body.active
+        },
+           {
+            where : {
+                id : +req.body.id
+            }
+        },
+        )
+        .then( () => res.status(200).json('cambio realizado'))
+        .catch(error => {
+            res.status(500).json(error)
+            console.log(error)
+        })
+    },
+    removeRecord : (req,res) => {
+        db.Record.destroy({
+            where : {
+                id : +req.body.id
+            }
+        })
+        .then( () => res.status(200).json('inscripción eliminada'))
+        .catch(error => {
+            res.status(500).json(error)
+            console.log(error)
+        })
     }
 }

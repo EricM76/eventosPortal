@@ -43,6 +43,23 @@ function copiarAlPortapapeles(id_elemento) {
   })
 }
 
+async function changeActive(id)  {
+  let value;
+  document.getElementById('active').checked ? value = 1 : value = 0
+  response = await fetch('/apis/active/'+id,{
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+          id,
+          active : value
+      })
+  });
+  result = await response.json();
+  console.log(result);
+}
+
 if(params.get('event') && params.get('event') == "success"){
   Toast.fire({
     icon: 'success',
@@ -102,7 +119,5 @@ window.addEventListener('load', () => {
       title: 'Descarga en proceso...'
     })
   })
-
- 
 
 })
